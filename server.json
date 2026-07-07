@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.predictionmarketspicks/quant",
+  "description": "Prediction-market quant tools for AI agents: EV, Kelly, arbitrage, edge for Kalshi & Polymarket.",
+  "version": "1.0.0",
+  "websiteUrl": "https://predictionmarketspicks.com/mcp",
+  "repository": {
+    "url": "https://github.com/predictionmarketspicks/prediction-marketspicks",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://predictionmarketspicks.com/api/mcp/mcp"
+    }
+  ]
+}
