@@ -1,0 +1,22 @@
+{
+  "name": "predictionmarketspicks-quant-local",
+  "version": "1.2.1",
+  "private": true,
+  "description": "Local free-calculator build of the PredictionMarketsPicks Quant MCP server (6 stateless tools). The hosted server at https://predictionmarketspicks.com/api/mcp/mcp is canonical.",
+  "type": "module",
+  "bin": {
+    "pmp-quant": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.26.0",
+    "zod": "4.4.3"
+  },
+  "license": "MIT"
+}

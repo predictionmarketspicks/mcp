@@ -12,6 +12,8 @@ A hosted **Model Context Protocol** server that gives AI agents institutional-gr
 
 This repo is the public home and documentation for the hosted server. The server is live — no install, no build. Point any MCP client at the endpoint above.
 
+It also ships a **local, self-contained build of the six free calculators** (`src/`) — a stdio MCP server with no network access that runs in any sandbox. See [Run the free tier locally](#run-the-free-tier-locally). The four Pro tools read live PMP edge engines and are only available on the hosted endpoint.
+
 ## Tools
 
 The free tier is a set of stateless quant calculators. Pro tools read PredictionMarketsPicks' live edge engines and require an API key.
@@ -46,6 +48,25 @@ https://predictionmarketspicks.com/api/mcp/mcp
 ```
 
 The free calculators work with no key. Pro tools require a PredictionMarketsPicks API key — see https://predictionmarketspicks.com/mcp.
+
+## Run the free tier locally
+
+The six free calculators run entirely offline as a stdio MCP server — no key, no network. Useful for air-gapped agents, testing, or sandboxed hosts.
+
+```
+npm install
+npm start          # stdio MCP server: 6 free tools
+npm run smoke      # end-to-end self-test
+```
+
+Or with Docker:
+
+```
+docker build -t pmp-mcp-quant .
+docker run --rm -i pmp-mcp-quant
+```
+
+Point a stdio MCP client at `node src/index.js` (or the container). For the full ten-tool experience including the live Pro edge engines, use the hosted endpoint above.
 
 ## About
 
