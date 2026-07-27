@@ -53,6 +53,24 @@ const combo = await client.callTool({
 assert(combo.structuredContent?.verdict === null, 'combo_edge withholds verdict without offeredOdds')
 assert(combo.structuredContent?.fair_band != null, 'combo_edge returns a fair-value band')
 
+// percent-scale guard (v1.8.0) — a decimal fraction must ERROR, never return a
+// confident wrong signal. 0.55 on a 0–100 scale reads as 0.55% and used to come
+// back as a -98% SELL.
+const frac = await client.callTool({ name: 'calculate_ev', arguments: { marketPrice: 40, yourProbability: 0.55 } })
+assert(frac.isError === true, 'fraction-like yourProbability is rejected, not computed')
+assert(/percent \(0–100\)/.test(frac.content[0].text), 'fraction error names the percent scale')
+assert(frac.structuredContent?.signal === undefined, 'rejected call returns no signal')
+
+const fracKelly = await client.callTool({
+  name: 'kelly_size',
+  arguments: { winProbability: 0.6, marketPrice: 40, bankroll: 1000 },
+})
+assert(fracKelly.isError === true, 'fraction-like winProbability is rejected, not sized')
+
+// 0 and 1 are valid percents — the guard is the open interval only
+const edgeCase = await client.callTool({ name: 'calculate_ev', arguments: { marketPrice: 40, yourProbability: 1 } })
+assert(!edgeCase.isError, 'yourProbability=1 is a valid percent, not treated as a fraction')
+
 // no vendor / OPRA leakage in any text output (defensive)
 const allText = [ev, conv, kelly, combo].map((r) => r.content[0].text).join(' ').toLowerCase()
 assert(!/(databento|opra|tradier|massive)/.test(allText), 'no vendor names leak in output')

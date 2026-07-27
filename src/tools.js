@@ -41,6 +41,21 @@ const PHASE1_ANNOTATIONS = { readOnlyHint: true, openWorldHint: false }
 
 const sign = (n) => (n > 0 ? `+${n}` : `${n}`)
 
+// ─── percent-scale probability guard (mirrors the hosted server, v1.8.0) ─────
+// Agents habitually pass decimal fractions (0.71 meaning 71%). On a 0–100
+// percent scale that reads as 0.71% and yields a confidently wrong signal
+// (calculate_ev → -98.85% SELL) instead of an error. Reject the ambiguous open
+// interval (0, 1) — normalizing would guess at intent and silently rewrite a
+// genuine sub-1% estimate. Keep in sync with lib/mcp/tools.ts in the main repo.
+const isFractionLike = (value) => value > 0 && value < 1
+
+const fractionProbError = (param, value) =>
+  toolError(
+    `${param}=${value} looks like a decimal fraction, but this tool takes percent (0–100). ` +
+      `Pass ${roundTo(value * 100, 2)} for ${roundTo(value * 100, 2)}%. ` +
+      `For a genuine sub-1% estimate, round to 1 — signals are not meaningful below that resolution.`,
+  )
+
 // ─── calculate_ev ────────────────────────────────────────────────────────────
 
 const calculateEv = {
@@ -62,13 +77,17 @@ const calculateEv = {
         .number()
         .min(0)
         .max(100)
-        .describe('Your own estimate of the true probability the contract resolves YES, in % (0–100).'),
+        .describe(
+          'Your own estimate of the true probability the contract resolves YES, in % (0–100). ' +
+            'Percent, not a fraction — pass 71 for 71%, not 0.71.',
+        ),
     },
     annotations: PHASE1_ANNOTATIONS,
   },
   handler: (args) => {
     const marketPrice = Number(args.marketPrice)
     const yourProbability = Number(args.yourProbability)
+    if (isFractionLike(yourProbability)) return fractionProbError('yourProbability', yourProbability)
     const edge = calculateEVEdge(marketPrice, yourProbability)
     const signal = getEVSignal(edge)
     const interpretation = getEVInterpretation(edge, signal)
@@ -97,7 +116,13 @@ const kellySize = {
       '(full / half / quarter / eighth), returns the dollar stake and a risk rating. Use for ' +
       '"how much should I stake", "what is my position size", "Kelly sizing for this trade".',
     inputSchema: {
-      winProbability: z.number().min(0).max(100).describe('Your probability the contract resolves YES, in % (0–100).'),
+      winProbability: z
+        .number()
+        .min(0)
+        .max(100)
+        .describe(
+          'Your probability the contract resolves YES, in % (0–100). Percent, not a fraction — pass 60 for 60%, not 0.6.',
+        ),
       marketPrice: z.number().min(1).max(99).describe('Contract price in cents (1–99). Sets the payout ratio.'),
       bankroll: z.number().positive().describe('Total bankroll in dollars.'),
       fraction: z
@@ -109,6 +134,7 @@ const kellySize = {
   },
   handler: (args) => {
     const winProbability = Number(args.winProbability)
+    if (isFractionLike(winProbability)) return fractionProbError('winProbability', winProbability)
     const marketPrice = Number(args.marketPrice)
     const bankroll = Number(args.bankroll)
     const fraction = args.fraction ?? 'half'
@@ -145,7 +171,13 @@ const bayesUpdate = {
       'returns the posterior probability and the per-step chain. Use for "update my estimate with new ' +
       'information", "posterior probability", "how does this news change the odds".',
     inputSchema: {
-      prior: z.number().min(0).max(100).describe('Prior probability the hypothesis is true, in % (0–100).'),
+      prior: z
+        .number()
+        .min(0)
+        .max(100)
+        .describe(
+          'Prior probability the hypothesis is true, in % (0–100). Percent, not a fraction — pass 50 for 50%, not 0.5.',
+        ),
       evidence: z
         .array(
           z.object({
@@ -169,6 +201,7 @@ const bayesUpdate = {
   },
   handler: (args) => {
     const prior = Number(args.prior)
+    if (isFractionLike(prior)) return fractionProbError('prior', prior)
     const evidence = args.evidence ?? []
     const steps = chainBayesUpdates(prior, evidence)
     const posterior = steps.length ? steps[steps.length - 1].posterior : prior
