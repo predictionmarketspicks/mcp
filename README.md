@@ -2,13 +2,19 @@
 
 [![mcp MCP server](https://glama.ai/mcp/servers/predictionmarketspicks/mcp/badges/card.svg)](https://glama.ai/mcp/servers/predictionmarketspicks/mcp)
 
-A hosted **Model Context Protocol** server that gives AI agents institutional-grade quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform arbitrage, and live edge signals.
+A hosted **Model Context Protocol** server that gives AI agents institutional-grade quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform arbitrage, live edge signals, NFL model-vs-market edges, and a full **2026 fantasy football draft assistant**. **22 tools — 15 free, 7 Pro.**
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([Model Context Protocol registry](https://registry.modelcontextprotocol.io))
 - **Docs / landing page:** https://predictionmarketspicks.com/mcp
 - **Manifest:** [`server.json`](./server.json) · also served at `https://predictionmarketspicks.com/.well-known/mcp/server.json`
 - **Type:** Cloud service ☁️ · TypeScript 📇
+
+## Demo
+
+[**Watch the 40-second walkthrough**](https://youtu.be/ulgw1yUeP-Q) — connect the server with one command, then ask in plain English and get quarter-Kelly position sizing from `kelly_size` and a model-vs-Kalshi edge read from `nfl_edge`, returned inside the chat.
+
+[![Watch the demo](https://svxqipncfupabpvxtlro.supabase.co/storage/v1/object/public/media/mcp/mcp-demo-poster.jpg)](https://youtu.be/ulgw1yUeP-Q)
 
 This repo is the public home and documentation for the hosted server. The server is live — no install, no build. Point any MCP client at the endpoint above.
 
@@ -25,11 +31,23 @@ The free tier is a set of stateless quant calculators. Pro tools read Prediction
 | `bayes_update` | Free | Update a prior with one or more pieces of evidence via Bayes' theorem; returns the posterior and the per-step chain. |
 | `convert_probability` | Free | Convert between implied probability, American odds, and decimal odds (American odds carry no commas). |
 | `base_rate_gap` | Free | Compare a market price to the historical base rate for a class of events; returns the gap in points + sample-size quality. |
-| `combo_edge` | Free | Grade a same-game multi-leg combo: EV %, fair vs offered odds, and a negative-correlation-trap flag. |
+| `combo_edge` | Free | Grade a same-game multi-leg combo: EV %, fair vs offered odds, and a negative-correlation-trap flag. Renders as an interactive card in supported hosts. |
+| `nfl_power_ratings` | Free | Gridiron Edge Rating (GER) for all 32 NFL teams — a defense-adjusted power rating with offense/defense/special-teams splits. |
+| `nfl_win_probability` | Free | Turn an NFL spread and total into win probability, projected score, cover probability, and over/under probability. |
+| `draft_board` | Free | The 2026 half-PPR fantasy draft board — every player ranked, blending the projection model with consensus ADP. |
+| `best_available` | Free | Best players still on the board given the current pick and who's already gone. |
+| `player_outlook` | Free | One player's 2026 outlook: projected points, floor/ceiling, boom/bust odds, and a SLEEPER / BUST read. |
+| `compare_players` | Free | Compare 2–4 players side by side — projection, floor/ceiling, ADP, and draft round. |
+| `sleepers_and_busts` | Free | The biggest gaps between the model and consensus ADP for 2026. |
+| `who_do_i_draft` | Free | The single best pick right now given your roster and pick number. |
+| `adp_market_gaps` | Free | Players whose Average Draft Position swings most between platforms — consensus vs ESPN, Sleeper, Yahoo. |
 | `find_arbitrage` | Pro | Cross-platform price gaps between Kalshi and Polymarket on the same sports contract (NBA, NHL, MLB, World Cup). |
 | `market_pulse` | Pro | US macro-health composite (0–100) and regime, plus six category scores. |
 | `commodity_edge` | Pro | Largest model edge on a Kalshi weekly-silver or twice-daily bitcoin strike, as a trade ticket (side, price, criterion, edge, tier, ¼-Kelly). |
 | `scan_mispricings` | Pro | Polymarket contracts trading away from the PMP model, with direction, edge in points, and quarter-Kelly sizing. |
+| `nfl_edge` | Pro | Where the PMP NFL model disagrees with live Kalshi prices — game lines, win-total futures, MVP, championship. |
+| `nfl_prop_edge` | Pro | NFL player-prop edges — model projection vs the Kalshi prop line (passing, rushing, receiving yards). |
+| `edge_alerts` | Pro | The edge alerts our models generate on Kalshi — weather, bitcoin/silver/gold/oil, and mispricings — as a live feed. |
 
 All tool descriptions and outputs use prediction-market terminology (trader / position / contract / market analysis).
 
@@ -47,11 +65,11 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 https://predictionmarketspicks.com/api/mcp/mcp
 ```
 
-The free calculators work with no key. Pro tools require a PredictionMarketsPicks API key — see https://predictionmarketspicks.com/mcp.
+The 15 free tools work with no key. Pro tools require a PredictionMarketsPicks API key — see https://predictionmarketspicks.com/mcp.
 
 ## Run the free tier locally
 
-The six free calculators run entirely offline as a stdio MCP server — no key, no network. Useful for air-gapped agents, testing, or sandboxed hosts.
+The six core free calculators run entirely offline as a stdio MCP server — no key, no network. Useful for air-gapped agents, testing, or sandboxed hosts.
 
 ```
 npm install
@@ -66,7 +84,7 @@ docker build -t pmp-mcp-quant .
 docker run --rm -i pmp-mcp-quant
 ```
 
-Point a stdio MCP client at `node src/index.js` (or the container). For the full ten-tool experience including the live Pro edge engines, use the hosted endpoint above.
+Point a stdio MCP client at `node src/index.js` (or the container). The local build ships the six core calculators only; the other 16 tools (draft assistant, NFL models, and the Pro edge engines) read live PMP data and are hosted-only — use the endpoint above.
 
 ## About
 
