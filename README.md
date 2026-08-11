@@ -2,7 +2,7 @@
 
 [![mcp MCP server](https://glama.ai/mcp/servers/predictionmarketspicks/mcp/badges/card.svg)](https://glama.ai/mcp/servers/predictionmarketspicks/mcp)
 
-A hosted **Model Context Protocol** server that gives AI agents institutional-grade quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform arbitrage, live edge signals, NFL model-vs-market edges, and a full **2026 fantasy football draft assistant**. **22 tools — 15 free, 7 Pro.**
+A hosted **Model Context Protocol** server that gives AI agents institutional-grade quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform arbitrage, live edge signals, NFL model-vs-market edges, and a full **2026 fantasy football draft assistant**. **22 tools — 15 free, 2 free-with-caps, 5 Pro.**
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([Model Context Protocol registry](https://registry.modelcontextprotocol.io))
@@ -18,11 +18,11 @@ A hosted **Model Context Protocol** server that gives AI agents institutional-gr
 
 This repo is the public home and documentation for the hosted server. The server is live — no install, no build. Point any MCP client at the endpoint above.
 
-It also ships a **local, self-contained build of the six free calculators** (`src/`) — a stdio MCP server with no network access that runs in any sandbox. See [Run the free tier locally](#run-the-free-tier-locally). The four Pro tools read live PMP edge engines and are only available on the hosted endpoint.
+It also ships a **local, self-contained build of the six free calculators** (`src/`) — a stdio MCP server with no network access that runs in any sandbox. See [Run the free tier locally](#run-the-free-tier-locally). The Pro tools read live PMP edge engines and are only available on the hosted endpoint.
 
 ## Tools
 
-The free tier is a set of stateless quant calculators. Pro tools read PredictionMarketsPicks' live edge engines and require an API key.
+The free tier is a set of stateless quant calculators plus the whole 2026 fantasy draft assistant. Pro tools read PredictionMarketsPicks' live edge engines and require an API key. Two tools sit in between (**Capped**): they answer without a key at a limited depth and return more with a free key (just an email, no card) at [/mcp/key](https://predictionmarketspicks.com/mcp/key).
 
 | Tool | Tier | What it does |
 |---|---|---|
@@ -41,8 +41,8 @@ The free tier is a set of stateless quant calculators. Pro tools read Prediction
 | `sleepers_and_busts` | Free | The biggest gaps between the model and consensus ADP for 2026. |
 | `who_do_i_draft` | Free | The single best pick right now given your roster and pick number. |
 | `adp_market_gaps` | Free | Players whose Average Draft Position swings most between platforms — consensus vs ESPN, Sleeper, Yahoo. |
-| `find_arbitrage` | Pro | Cross-platform price gaps between Kalshi and Polymarket on the same sports contract (NBA, NHL, MLB, World Cup). |
-| `market_pulse` | Pro | US macro-health composite (0–100) and regime, plus six category scores. |
+| `find_arbitrage` | Capped | Cross-platform price gaps between Kalshi and Polymarket on the same sports contract (NBA, NHL, MLB, World Cup). No key returns the single largest gap in full detail; a free key returns the top 3; Pro returns the whole board. |
+| `market_pulse` | Capped | US macro-health composite (0–100) and regime — free without a key, always — plus the six category scores: 2 without a key, 4 with a free key, all six on Pro. |
 | `commodity_edge` | Pro | Largest model edge on a Kalshi weekly-silver or twice-daily bitcoin strike, as a trade ticket (side, price, criterion, edge, tier, ¼-Kelly). |
 | `scan_mispricings` | Pro | Polymarket contracts trading away from the PMP model, with direction, edge in points, and quarter-Kelly sizing. |
 | `nfl_edge` | Pro | Where the PMP NFL model disagrees with live Kalshi prices — game lines, win-total futures, MVP, championship. |
