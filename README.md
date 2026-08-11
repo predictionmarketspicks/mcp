@@ -2,7 +2,7 @@
 
 [![mcp MCP server](https://glama.ai/mcp/servers/predictionmarketspicks/mcp/badges/card.svg)](https://glama.ai/mcp/servers/predictionmarketspicks/mcp)
 
-A hosted **Model Context Protocol** server that gives AI agents institutional-grade quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform arbitrage, live edge signals, NFL model-vs-market edges, and a full **2026 fantasy football draft assistant**. **22 tools — 15 free, 2 free-with-caps, 5 Pro.**
+A hosted **Model Context Protocol** server that gives AI agents institutional-grade quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform arbitrage, live edge signals, NFL model-vs-market edges, and a full **2026 fantasy football draft assistant**. **23 tools — 16 free, 2 free-with-caps, 5 Pro.**
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([Model Context Protocol registry](https://registry.modelcontextprotocol.io))
@@ -37,6 +37,7 @@ The free tier is a set of stateless quant calculators plus the whole 2026 fantas
 | `draft_board` | Free | The 2026 half-PPR fantasy draft board — every player ranked, blending the projection model with consensus ADP. |
 | `best_available` | Free | Best players still on the board given the current pick and who's already gone. |
 | `player_outlook` | Free | One player's 2026 outlook: projected points, floor/ceiling, boom/bust odds, and a SLEEPER / BUST read. |
+| `explain_player` | Free | Why the board ranks a player where it does — our model rank vs consensus ADP vs the published blend, the edge between them, and what the projection does and does not model. |
 | `compare_players` | Free | Compare 2–4 players side by side — projection, floor/ceiling, ADP, and draft round. |
 | `sleepers_and_busts` | Free | The biggest gaps between the model and consensus ADP for 2026. |
 | `who_do_i_draft` | Free | The single best pick right now given your roster and pick number. |
@@ -65,7 +66,7 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 https://predictionmarketspicks.com/api/mcp/mcp
 ```
 
-The 15 free tools work with no key. Pro tools require a PredictionMarketsPicks API key — see https://predictionmarketspicks.com/mcp.
+The 16 free tools work with no key. Pro tools require a PredictionMarketsPicks API key — see https://predictionmarketspicks.com/mcp.
 
 ## Run the free tier locally
 
@@ -84,7 +85,7 @@ docker build -t pmp-mcp-quant .
 docker run --rm -i pmp-mcp-quant
 ```
 
-Point a stdio MCP client at `node src/index.js` (or the container). The local build ships the six core calculators only; the other 16 tools (draft assistant, NFL models, and the Pro edge engines) read live PMP data and are hosted-only — use the endpoint above.
+Point a stdio MCP client at `node src/index.js` (or the container). The local build ships the six core calculators only; the other 17 tools (draft assistant, NFL models, and the Pro edge engines) read live PMP data and are hosted-only — use the endpoint above.
 
 ## About
 
