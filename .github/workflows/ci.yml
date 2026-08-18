@@ -12,6 +12,7 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      - run: npm run check:version
       - run: npm run smoke
   docker-build:
     runs-on: ubuntu-latest

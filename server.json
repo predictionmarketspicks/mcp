@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.predictionmarketspicks/quant",
-  "description": "Quant tools + an NFL fantasy draft assistant for AI agents — Kalshi & Polymarket EV, edge, ADP.",
-  "version": "1.8.0",
+  "description": "Quant tools + an NFL fantasy draft assistant for AI agents \u2014 Kalshi & Polymarket EV, edge, ADP.",
+  "version": "1.10.0",
   "websiteUrl": "https://predictionmarketspicks.com/mcp",
   "repository": {
     "url": "https://github.com/predictionmarketspicks/mcp",

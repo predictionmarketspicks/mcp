@@ -1,22 +1,55 @@
 {
-  "name": "predictionmarketspicks-quant-local",
-  "version": "1.8.0",
-  "private": true,
-  "description": "Local free-calculator build of the PredictionMarketsPicks Quant MCP server (6 stateless tools). The hosted server at https://predictionmarketspicks.com/api/mcp/mcp is canonical.",
+  "name": "@predictionmarketspicks/mcp",
+  "version": "1.10.0",
+  "description": "MCP server for Kalshi & Polymarket prediction markets — EV, Kelly, Bayes, cross-platform arbitrage, live edge signals and an NFL draft assistant, with a publicly graded track record.",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "prediction-markets",
+    "kalshi",
+    "polymarket",
+    "expected-value",
+    "kelly-criterion",
+    "arbitrage",
+    "ai-agents",
+    "claude",
+    "llm-tools"
+  ],
+  "homepage": "https://predictionmarketspicks.com/mcp",
+  "bugs": "https://github.com/predictionmarketspicks/mcp/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/predictionmarketspicks/mcp.git"
+  },
+  "author": "PredictionMarketsPicks",
+  "license": "MIT",
   "type": "module",
   "bin": {
-    "pmp-quant": "src/index.js"
+    "predictionmarketspicks-mcp": "src/index.js"
   },
+  "files": [
+    "src",
+    "server.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "node src/index.js",
-    "smoke": "node scripts/smoke.js"
+    "start:local": "node src/index.js --local",
+    "smoke": "node scripts/smoke.js",
+    "smoke:bridge": "node scripts/smoke-bridge.js",
+    "check:version": "node scripts/check-version.js",
+    "prepublishOnly": "npm run check:version && npm run smoke"
   },
   "engines": {
     "node": ">=20"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.26.0",
     "zod": "4.4.3"
-  },
-  "license": "MIT"
+  }
 }

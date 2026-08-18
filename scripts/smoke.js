@@ -17,7 +17,7 @@ function assert(cond, msg) {
   console.log('ok:', msg)
 }
 
-const transport = new StdioClientTransport({ command: process.execPath, args: [serverPath] })
+const transport = new StdioClientTransport({ command: process.execPath, args: [serverPath, '--local'] })
 const client = new Client({ name: 'smoke', version: '1.0.0' })
 await client.connect(transport)
 
