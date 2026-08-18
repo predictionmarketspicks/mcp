@@ -5,7 +5,7 @@
 
 A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, live edge signals, and a 2026 NFL fantasy draft assistant.
 
-**Every signal our engines publish is graded against the market that priced it: 1,612 decided signals, +$98.40 net on a flat one-contract stake, published per tool — including the engines that lose money.** → [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record)
+**Every signal our engines publish is graded against the market that priced it: 1,612 decided signals, +$98.40 net on a flat one-contract stake, as of Aug 18, 2026 — published per tool, including the engines that lose money.** → [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record)
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
