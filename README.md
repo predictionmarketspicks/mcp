@@ -5,12 +5,12 @@
 
 A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, live edge signals, and a 2026 NFL fantasy draft assistant.
 
-**Every signal our engines publish is graded against the market that priced it: 1,612 decided signals, +$98.40 net on a flat one-contract stake, as of Aug 18, 2026 — published per tool, including the engines that lose money.** → [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record)
+**Every signal our engines publish is graded against the market that priced it: 1,612 decided signals, +$98.40 net on a flat one-contract stake, as of Aug 18, 2026 — published per tool, including the engines that lose money.** → [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **Docs / landing page:** https://predictionmarketspicks.com/mcp
-- **23 tools** — 16 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set.
+- **Docs / landing page:** [predictionmarketspicks.com/mcp](https://predictionmarketspicks.com/mcp?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
+- **24 tools** — 17 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set.
 
 ## Connect
 
@@ -33,7 +33,7 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 }
 ```
 
-That relays the hosted server verbatim — all 23 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
+That relays the hosted server verbatim — all 24 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
@@ -45,7 +45,7 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 ## Tools
 
-Free tools need no key. Pro tools read the live PMP edge engines and require a PredictionMarketsPicks API key ([$14.99/mo](https://predictionmarketspicks.com/pricing)). A [free key](https://predictionmarketspicks.com/mcp/key) raises the depth caps on the list-shaped tools.
+Free tools need no key. Pro tools read the live PMP edge engines and require a PredictionMarketsPicks API key ([$14.99/mo](https://predictionmarketspicks.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)). Deeper results on the list-shaped tools unlock instantly and free — no key to copy, nothing to install: [unlock here](https://predictionmarketspicks.com/mcp/unlock?utm_source=github&utm_medium=readme&utm_campaign=mcp-server).
 
 ### Calculators — free, stateless, also available offline via `--local`
 
@@ -99,7 +99,7 @@ docker run --rm -i pmp-mcp-quant
 
 ## About
 
-Built by [PredictionMarketsPicks](https://predictionmarketspicks.com) — independent quant tools and edge analysis for Kalshi and Polymarket, published by The 7 Oracles. Educational analysis, not financial advice.
+Built by [PredictionMarketsPicks](https://predictionmarketspicks.com/?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — independent quant tools and edge analysis for Kalshi and Polymarket, published by The 7 Oracles. Educational analysis, not financial advice.
 
 ## License
 
