@@ -11,6 +11,7 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
 - **Docs / landing page:** [predictionmarketspicks.com/mcp](https://predictionmarketspicks.com/mcp?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
 - **24 tools** — 17 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set.
+- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board
 
 ## Connect
 
