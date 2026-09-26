@@ -5,13 +5,13 @@
 [![npm](https://img.shields.io/npm/v/@predictionmarketspicks/mcp)](https://www.npmjs.com/package/@predictionmarketspicks/mcp)
 [![mcp MCP server](https://glama.ai/mcp/servers/predictionmarketspicks/mcp/badges/card.svg)](https://glama.ai/mcp/servers/predictionmarketspicks/mcp)
 
-A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, Fed rate odds, live edge signals, and the in-season NFL model: power ratings, win probability, The Ladder, the weekly prop board and game/prop edges.
+A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, Fed rate odds, Kalshi's 15-minute markets and perps (with liquidation estimates), live edge signals, and the in-season NFL model: power ratings, win probability, The Ladder, the weekly prop board and game/prop edges.
 
 **Every signal our engines publish is graded against the market that priced it: 1,612 decided signals, +$98.40 net on a flat one-contract stake, as of Aug 18, 2026 — published per tool, including the engines that lose money.** → [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **29 tools** — 22 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Eight of the free tools are the fantasy draft desk, parked until the 2027 offseason (see below), so 14 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17).
+- **32 tools** — 25 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Eight of the free tools are the fantasy draft desk, parked until the 2027 offseason (see below), so 17 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26).
 - **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. The desk is parked for the 2026 season and reopens for the 2027 offseason.
 
 ## Connect
@@ -35,7 +35,7 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 }
 ```
 
-That relays the hosted server verbatim — all 29 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
+That relays the hosted server verbatim — all 32 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
@@ -49,9 +49,10 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 | Server | Endpoint | Exposes |
 |---|---|---|
-| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp` | All 29 tools |
+| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp` | All 32 tools |
 | `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp` | The 8 draft tools — parked until the 2027 offseason |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp` | The 6-tool weather loop: `edge_alerts` (weather feed) + the five calculators |
+| `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp` | The 8-tool commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `market_pulse` + three calculators |
 
 ## Tools
 
@@ -73,6 +74,9 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 | Tool | What it does |
 |---|---|
 | `fed_rate_odds` | Live Kalshi-implied odds of a Fed rate cut, hold or hike at each remaining 2026 FOMC meeting, plus the next meeting and the current fed funds rate. |
+| `fifteen_min_board` | Every Kalshi 15-minute series live — crypto, gold, silver, oil, natural gas, copper, currencies — with the open window's YES price, close time, settlement source, and how the last 96 windows settled. |
+| `perps_board` | Every Kalshi perp — price, volume, open interest, max leverage, and what funding has cost a long since launch. |
+| `perp_liquidation` | Where a leveraged Kalshi perp position liquidates (an estimate from Kalshi's published risk parameters), with fees and funding over the hold. |
 
 ### Markets — free, depth-capped
 

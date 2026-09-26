@@ -1,7 +1,7 @@
 {
   "name": "@predictionmarketspicks/mcp",
-  "version": "1.10.0",
-  "description": "MCP server for Kalshi & Polymarket prediction markets — EV, Kelly, Bayes, cross-platform arbitrage, live edge signals and an NFL draft assistant, with a publicly graded track record.",
+  "version": "1.11.0",
+  "description": "MCP server for Kalshi & Polymarket prediction markets — EV, Kelly, Bayes, cross-platform arbitrage, live edge signals, Kalshi 15-minute markets and perps, and an NFL draft assistant, with a publicly graded track record.",
   "keywords": [
     "mcp",
     "mcp-server",
