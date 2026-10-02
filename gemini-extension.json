@@ -1,6 +1,6 @@
 {
   "name": "predictionmarketspicks",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "Live Kalshi and Polymarket market data in Gemini CLI: NFL prop prices across venues, cross-venue price gaps, Fed meeting odds, 15-minute crypto and metals markets, NHL, Senate races, and EV / Kelly / Bayes calculators. Free, no key.",
   "mcpServers": {
     "predictionmarketspicks": {

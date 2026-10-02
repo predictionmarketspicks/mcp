@@ -7,14 +7,16 @@
 
 A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, Fed rate odds, Kalshi's 15-minute markets and perps (with liquidation estimates), live edge signals, and the in-season NFL model: power ratings, win probability, The Ladder, the weekly prop board and game/prop edges.
 
-**Every signal our engines publish is graded against the market that priced it: 1,612 decided signals, +$98.40 net on a flat one-contract stake, as of Aug 18, 2026 — published per tool, including the engines that lose money.** → [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
+**Every signal our engines publish is graded against the market that priced it — per tool, wins and losses both, including the engines that lose money.** The live record: [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **33 tools** — 26 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Eight of the free tools are the fantasy draft desk, parked until the 2027 offseason (see below), so 18 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28).
-- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. The desk is parked for the 2026 season and reopens for the 2027 offseason.
+- **33 tools** — 26 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Four of the free tools are fantasy-draft-only and parked until the 2027 offseason (see below), so 22 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28).
+- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season four of them answer week-by-week NFL prop questions (player_outlook, explain_player, compare_players, sleepers_and_busts); the other four reopen for the 2027 offseason.
 
 ## Connect
+
+**One click:** [Add to Cursor](https://cursor.com/install-mcp?name=predictionmarketspicks&config=eyJ1cmwiOiJodHRwczovL3ByZWRpY3Rpb25tYXJrZXRzcGlja3MuY29tL2FwaS9tY3AvbWNwIn0%3D) · [Add to VS Code](https://vscode.dev/redirect/mcp/install?name=predictionmarketspicks&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fpredictionmarketspicks.com%2Fapi%2Fmcp%2Fmcp%22%7D) · Gemini CLI: `gemini extensions install https://github.com/predictionmarketspicks/mcp`
 
 **Any host that speaks Streamable HTTP** (Claude Code, Claude.ai, ChatGPT, Cursor) — point it at the URL. Nothing to install:
 
@@ -39,7 +41,7 @@ That relays the hosted server verbatim — all 33 tools, live data, tool schemas
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
-npx @predictionmarketspicks/mcp --draft    # bridge to the fantasy-draft server (parked until the 2027 offseason)
+npx @predictionmarketspicks/mcp --draft    # bridge to the fantasy-draft server (half parked until 2027)
 npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network at all
 ```
 
@@ -50,7 +52,7 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 | Server | Endpoint | Exposes |
 |---|---|---|
 | `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp` | All 33 tools |
-| `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp` | The 8 draft tools — parked until the 2027 offseason |
+| `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp` | The 8 draft tools — four answer in season, four parked until the 2027 offseason |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp` | The 6-tool weather loop: `edge_alerts` (weather feed) + the five calculators |
 | `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp` | The 8-tool commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `market_pulse` + three calculators |
 
@@ -101,11 +103,11 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 |---|---|
 | `nhl_edge` | Goal Light — every NHL game and player contract priced against Kalshi, with the book consensus beside it and a 10,000-season simulation for the futures board. |
 
-### Fantasy draft desk — parked until the 2027 offseason
+### Fantasy draft desk — half in season, half parked until 2027
 
-`draft_board` · `best_available` · `who_do_i_draft` · `compare_players` · `player_outlook` · `explain_player` · `sleepers_and_busts` · `adp_market_gaps`
+**Answering in season (free):** `player_outlook` · `explain_player` · `compare_players` · `sleepers_and_busts` — the same names, now about this week: one player's Kalshi prop strikes, why the model prices them there, two to four players side by side, and the players the market over- and underprices.
 
-The 2026 draft season closed on Sept 10, 2026. These eight tools stay registered (and free) but currently answer with a redirect to the in-season NFL tools above — `nfl_prop_board`, `nfl_ladder`, `nfl_edge` — rather than a draft answer. The desk reopens, with the 2027 board, for the 2027 offseason.
+**Parked until the 2027 offseason:** `draft_board` · `best_available` · `who_do_i_draft` · `adp_market_gaps` — still registered (and free), but they answer with a redirect to the in-season NFL tools above rather than a draft answer. They reopen with the 2027 board.
 
 ### Pro — live edge engines
 
