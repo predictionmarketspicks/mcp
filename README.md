@@ -14,6 +14,16 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 - **33 tools** — 26 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Four of the free tools are fantasy-draft-only and parked until the 2027 offseason (see below), so 22 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28).
 - **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season four of them answer week-by-week NFL prop questions (player_outlook, explain_player, compare_players, sleepers_and_busts); the other four reopen for the 2027 offseason.
 
+## See it work
+
+[![Kalshi vs Polymarket price gaps in one question](https://img.youtube.com/vi/gye5D6neAg0/maxresdefault.jpg)](https://www.youtube.com/watch?v=gye5D6neAg0)
+
+- **Gemini CLI:** install in one command, ask which Kalshi 15-minute markets are open. ([47s demo](https://www.youtube.com/watch?v=VCmYQQXq2bo) · [setup](https://predictionmarketspicks.com/mcp/gemini?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme))
+- **Kalshi vs Polymarket, in one question:** ask where the two venues disagree, then whether they agree on the next Fed meeting. ([50s demo](https://www.youtube.com/watch?v=gye5D6neAg0) · [setup guide](https://predictionmarketspicks.com/mcp/polymarket?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme))
+- **Kalshi 15-minute gold & Bitcoin + the BTC perp:** live boards and perp funding in one chat. ([48s demo](https://www.youtube.com/watch?v=VquOZ9jcHa8) · [commodity markets](https://predictionmarketspicks.com/commodity-markets?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme))
+- **Claude, ChatGPT & Cursor:** paste one URL and ask. ([40s demo](https://www.youtube.com/watch?v=ulgw1yUeP-Q) · [Cursor setup](https://predictionmarketspicks.com/mcp/cursor?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme))
+- **Kalshi weather edges + Kelly sizing:** forecast vs market, then the position size, in one chat. ([46s demo](https://www.youtube.com/watch?v=uafQ9UtOgwM) · [weather](https://predictionmarketspicks.com/weather?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme))
+
 ## Connect
 
 **One click:** [Add to Cursor](https://cursor.com/install-mcp?name=predictionmarketspicks&config=eyJ1cmwiOiJodHRwczovL3ByZWRpY3Rpb25tYXJrZXRzcGlja3MuY29tL2FwaS9tY3AvbWNwIn0%3D) · [Add to VS Code](https://vscode.dev/redirect/mcp/install?name=predictionmarketspicks&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fpredictionmarketspicks.com%2Fapi%2Fmcp%2Fmcp%22%7D) · Gemini CLI: `gemini extensions install https://github.com/predictionmarketspicks/mcp`
