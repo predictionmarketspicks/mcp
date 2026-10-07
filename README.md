@@ -9,7 +9,7 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 
 **Every signal our engines publish is graded against the market that priced it — per tool, wins and losses both, including the engines that lose money.** The live record: [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
 
-- **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp`
+- **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp?via=npm`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
 - **34 tools** — 27 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Four of the free tools are fantasy-draft-only and parked until the 2027 offseason (see below), so 23 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28).
 - **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season four of them answer week-by-week NFL prop questions (player_outlook, explain_player, compare_players, sleepers_and_busts); the other four reopen for the 2027 offseason.
@@ -31,7 +31,7 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 **Any host that speaks Streamable HTTP** (Claude Code, Claude.ai, ChatGPT, Cursor) — point it at the URL. Nothing to install:
 
 ```
-claude mcp add --transport http predictionmarketspicks https://predictionmarketspicks.com/api/mcp/mcp
+claude mcp add --transport http predictionmarketspicks https://predictionmarketspicks.com/api/mcp/mcp?via=npm
 ```
 
 **Hosts that only speak stdio** — this package bridges one to the other:
@@ -61,7 +61,7 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 | Server | Endpoint | Exposes |
 |---|---|---|
-| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp` | All 34 tools |
+| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 34 tools |
 | `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp` | The 8 draft tools — four answer in season, four parked until the 2027 offseason |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
 | `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp` | The 8-tool commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `market_pulse` + three calculators |

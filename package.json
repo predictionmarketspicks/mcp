@@ -1,6 +1,6 @@
 {
   "name": "@predictionmarketspicks/mcp",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "MCP server for Kalshi & Polymarket prediction markets. Free, no key: NFL player-prop board, Kalshi vs Polymarket price gaps, 15-minute crypto and metals markets, Fed odds, NHL, EV and Kelly math. Publicly graded track record.",
   "keywords": [
     "mcp",

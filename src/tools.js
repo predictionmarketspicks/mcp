@@ -2,7 +2,7 @@
 // (lib/mcp/tools.ts). Pure, no DB, no live data. The 4 Pro tools
 // (find_arbitrage / market_pulse / commodity_edge / scan_mispricings) read live
 // PMP edge engines behind auth and are ONLY available on the hosted server at
-// https://predictionmarketspicks.com/api/mcp/mcp — they are intentionally not in
+// https://predictionmarketspicks.com/api/mcp/mcp?via=npm — they are intentionally not in
 // this local build.
 //
 // Tool descriptions ARE agent SEO — keyword-dense, outcome-first. All copy obeys

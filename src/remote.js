@@ -21,7 +21,7 @@ import {
 import { z } from 'zod'
 import { VERSION } from './version.js'
 
-export const DEFAULT_ENDPOINT = 'https://predictionmarketspicks.com/api/mcp/mcp'
+export const DEFAULT_ENDPOINT = 'https://predictionmarketspicks.com/api/mcp/mcp?via=npm'
 export const DRAFT_ENDPOINT = 'https://predictionmarketspicks.com/api/mcp-draft/mcp'
 
 // Verbatim relay. A permissive schema is deliberate: validating upstream results

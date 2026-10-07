@@ -24,7 +24,7 @@ if (argv.includes('--help') || argv.includes('-h')) {
       '',
       'Usage: npx @predictionmarketspicks/mcp [options]',
       '',
-      '  (default)        bridge stdio to https://predictionmarketspicks.com/api/mcp/mcp',
+      '  (default)        bridge stdio to https://predictionmarketspicks.com/api/mcp/mcp?via=npm',
       '  --local          run the 6 free calculators offline (no network)',
       '  --draft          bridge to the fantasy-draft server instead',
       '  --endpoint <url> bridge to an explicit endpoint',
