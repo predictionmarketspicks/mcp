@@ -89,6 +89,14 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 | `fifteen_min_board` | Every Kalshi 15-minute series live — crypto, gold, silver, oil, natural gas, copper, currencies — with the open window's YES price, close time, settlement source, and how the last 96 windows settled. |
 | `perps_board` | Every Kalshi perp — price, volume, open interest, max leverage, and what funding has cost a long since launch. |
 | `perp_liquidation` | Where a leveraged Kalshi perp position liquidates (an estimate from Kalshi's published risk parameters), with fees and funding over the hold. |
+| `weather_board` | Every open Kalshi daily-high temperature strike in 13 cities — YES price, settlement station, close time, and the NWS forecast high beside it. |
+
+### Politics — free
+
+| Tool | What it does |
+|---|---|
+| `senate_map` | Every 2026 Senate seat — holder, structure rating, forecaster ratings and the live Kalshi price, closest race first. Unpriced seats return null, never an estimate. |
+| `race_odds` | Live Kalshi odds for one 2026 Senate, governor or competitive House race (by state or district, e.g. "TX-34") — every leg's price, volume and link, plus the forecaster ratings. |
 
 ### Markets — free, depth-capped
 
