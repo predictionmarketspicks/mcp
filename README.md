@@ -4,6 +4,7 @@
 
 [![npm](https://img.shields.io/npm/v/@predictionmarketspicks/mcp)](https://www.npmjs.com/package/@predictionmarketspicks/mcp)
 [![mcp MCP server](https://glama.ai/mcp/servers/predictionmarketspicks/mcp/badges/card.svg)](https://glama.ai/mcp/servers/predictionmarketspicks/mcp)
+[![M8ven Verified](https://m8ven.ai/badge/mcp/predictionmarketspicks-mcp-1enswv?variant=verified&v=0422870dff2e78a45472abf4ab88861e)](https://m8ven.ai/mcp/predictionmarketspicks-mcp-1enswv?s=readme)
 
 A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, Fed rate odds, Kalshi's 15-minute markets and perps (with liquidation estimates), live edge signals, and the in-season NFL model: power ratings, win probability, The Ladder, the weekly prop board and game/prop edges.
 
