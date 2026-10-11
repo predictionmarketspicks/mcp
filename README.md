@@ -12,7 +12,7 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp?via=npm`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **34 tools** — 27 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Four of the free tools are fantasy-draft-only and parked until the 2027 offseason (see below), so 23 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28).
+- **35 tools** — 28 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Four of the free tools are fantasy-draft-only and parked until the 2027 offseason (see below), so 24 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28; the graded track record joined 2026-10-11).
 - **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season four of them answer week-by-week NFL prop questions (player_outlook, explain_player, compare_players, sleepers_and_busts); the other four reopen for the 2027 offseason.
 
 ## See it work
@@ -48,7 +48,7 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 }
 ```
 
-That relays the hosted server verbatim — all 34 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
+That relays the hosted server verbatim — all 35 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
@@ -62,7 +62,7 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 | Server | Endpoint | Exposes |
 |---|---|---|
-| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 34 tools |
+| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 35 tools |
 | `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp` | The 8 draft tools — four answer in season, four parked until the 2027 offseason |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
 | `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp` | The 10-tool macro & commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `fed_rate_odds`, `market_pulse`, `base_rate_gap` + three calculators |
@@ -123,6 +123,7 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 | Tool | What it does |
 |---|---|
 | `nhl_edge` | Goal Light — every NHL game and player contract priced against Kalshi, with the book consensus beside it and a 10,000-season simulation for the futures board. |
+| `track_record` | Our graded record per engine (bitcoin, gold, silver, oil, weather, NHL) plus the daily editorial call: W-L, net P/L, a 95% win-rate range and the current model era. WATCH calls are reported apart. |
 
 ### Fantasy draft desk — half in season, half parked until 2027
 
