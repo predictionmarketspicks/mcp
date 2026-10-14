@@ -63,11 +63,11 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 | Server | Endpoint | Exposes |
 |---|---|---|
 | `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 42 tools |
-| `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp` | 11 tools: the 8 draft tools (four answer in season, four parked until the 2027 offseason) plus the in-season league tools `my_league`, `start_sit` and `waiver_targets` |
-| `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
-| `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp` | The 10-tool macro & commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `fed_rate_odds`, `market_pulse`, `base_rate_gap` + three calculators |
-| `com.predictionmarketspicks/elections` | `https://predictionmarketspicks.com/api/mcp-elections/mcp` | The election odds desk: `senate_map`, `race_odds` (every 2026 Senate, governor and House race on Kalshi), `fed_rate_odds`, `market_pulse` |
-| `com.predictionmarketspicks/crypto` | `https://predictionmarketspicks.com/api/mcp-crypto/mcp` | The crypto desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (bitcoin) + three calculators |
+| `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp?via=github` | 11 tools: the 8 draft tools (four answer in season, four parked until the 2027 offseason) plus the in-season league tools `my_league`, `start_sit` and `waiver_targets` |
+| `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp?via=github` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
+| `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp?via=github` | The 10-tool macro & commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `fed_rate_odds`, `market_pulse`, `base_rate_gap` + three calculators |
+| `com.predictionmarketspicks/elections` | `https://predictionmarketspicks.com/api/mcp-elections/mcp?via=github` | The election odds desk: `senate_map`, `race_odds` (every 2026 Senate, governor and House race on Kalshi), `fed_rate_odds`, `market_pulse` |
+| `com.predictionmarketspicks/crypto` | `https://predictionmarketspicks.com/api/mcp-crypto/mcp?via=github` | The crypto desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (bitcoin) + three calculators |
 
 ## Tools
 
