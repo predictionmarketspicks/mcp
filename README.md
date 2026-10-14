@@ -12,8 +12,8 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp?via=npm`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **42 tools** — 35 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Four of the free tools are fantasy-draft-only and parked until the 2027 offseason (see below), so 31 free tools answer in-season (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28; the graded track record, the Sleeper league view, start/sit and waiver targets joined 2026-10-11; the NBA prop price board joined 2026-10-11; the NFL game explainer, the NBA game-line board and NBA injury impact joined 2026-10-13).
-- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season four of them answer week-by-week NFL prop questions (player_outlook, explain_player, compare_players, sleepers_and_busts); the other four reopen for the 2027 offseason.
+- **43 tools** — 36 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Every free tool answers in season, including the eight fantasy-draft tools, which now answer week-by-week market questions (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28; the graded track record, the Sleeper league view, start/sit and waiver targets joined 2026-10-11; the NBA prop price board joined 2026-10-11; the NFL game explainer, the NBA game-line board and NBA injury impact joined 2026-10-13; the NFL prop explainer joined 2026-10-14).
+- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season all eight answer week-by-week NFL market questions instead of draft questions.
 
 ## See it work
 
@@ -48,11 +48,11 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 }
 ```
 
-That relays the hosted server verbatim — all 42 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
+That relays the hosted server verbatim — all 43 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
-npx @predictionmarketspicks/mcp --draft    # bridge to the fantasy-draft server (half parked until 2027)
+npx @predictionmarketspicks/mcp --draft    # bridge to the fantasy-draft server
 npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network at all
 ```
 
@@ -62,8 +62,8 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 | Server | Endpoint | Exposes |
 |---|---|---|
-| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 42 tools |
-| `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp?via=github` | 11 tools: the 8 draft tools (four answer in season, four parked until the 2027 offseason) plus the in-season league tools `my_league`, `start_sit` and `waiver_targets` |
+| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 43 tools |
+| `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp?via=github` | 11 tools: the 8 draft tools (all answer in season with the week's market) plus the in-season league tools `my_league`, `start_sit` and `waiver_targets` |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp?via=github` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
 | `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp?via=github` | The 10-tool macro & commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `fed_rate_odds`, `market_pulse`, `base_rate_gap` + three calculators |
 | `com.predictionmarketspicks/elections` | `https://predictionmarketspicks.com/api/mcp-elections/mcp?via=github` | The election odds desk: `senate_map`, `race_odds` (every 2026 Senate, governor and House race on Kalshi), `fed_rate_odds`, `market_pulse` |
@@ -117,7 +117,11 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 | `nfl_ladder` | The Ladder — every Kalshi strike vs our whole distribution (spreads, season wins, props) with the derived verdict: SHAPE, LOCATION or PRICED. |
 | `nfl_prop_board` | This week's NFL prop prices venue by venue — every Kalshi strike vs the book consensus, DraftKings/FanDuel lines, Novig/ProphetX, and where the best price for each side actually is. |
 | `nba_prop_board` | Every Kalshi NBA player-prop strike (points, rebounds, assists, threes) beside DraftKings, FanDuel, BetRivers, Fanatics, ESPN, Novig and ProphetX at the same strike — the cheapest venue per side, Kalshi fee included. Market prices only, no model. |
+| `nba_game_board` | Kalshi NBA moneyline, spread and total beside DraftKings, FanDuel, BetRivers, Fanatics, ESPN, Novig and ProphetX at the same line — the cheapest venue per side, Kalshi fee included. Market prices only. |
+| `nba_injury_impact` | Today's NBA absences from the official injury report, and for each absent star the teammates whose minutes and stats rose without him (with sample sizes), beside today's Kalshi prop prices. |
 | `ladder_arb` | Ladder Arb Scanner — Kalshi college football + NFL spread/total ladders priced out of order on the same side of the same game: locked arbitrage (buy the low strike, sell the high one) and crossed-mid inversions with the resting orders that capture them. |
+| `explain_game` | Why our model prices one NFL game where it does — Kalshi's price and line, our win probability, the model's lean in points, each team's power rating and the QB gate. |
+| `explain_prop` | Why one NFL player prop is a call — the YES/NO side and its Kalshi price, the tier, our projection against the threshold, and whether it is a published PLAY or held at WATCH. |
 
 ### NHL — free
 
@@ -129,11 +133,11 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 | `start_sit` | Two to four players side by side — the median Kalshi is pricing for each stat, read off his own strike ladder, plus his anytime-TD price. Market prices only; the call stays yours. |
 | `waiver_targets` | Sleeper's most-added players in the last 24 hours with what Kalshi is pricing each at — filtered to players still available in your league when you give a username. |
 
-### Fantasy draft desk — half in season, half parked until 2027
+### Fantasy draft desk — in season
 
 **Answering in season (free):** `player_outlook` · `explain_player` · `compare_players` · `sleepers_and_busts` — the same names, now about this week: one player's Kalshi prop strikes, why the model prices them there, two to four players side by side, and the players the market over- and underprices.
 
-**Parked until the 2027 offseason:** `draft_board` · `best_available` · `who_do_i_draft` · `adp_market_gaps` — still registered (and free), but they answer with a redirect to the in-season NFL tools above rather than a draft answer. They reopen with the 2027 board.
+**Also answering in season (free):** `draft_board` · `best_available` · `who_do_i_draft` · `adp_market_gaps` — the week's market version of each: players ranked by the median Kalshi prices them at, the strikes where Kalshi and the book consensus are 5¢+ apart, and the props on your roster. Draft answers return with the 2027 board.
 
 ### Pro — live edge engines
 
