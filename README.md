@@ -8,12 +8,12 @@
 
 A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, Fed rate odds, Kalshi's 15-minute markets and perps (with liquidation estimates), live edge signals, and the in-season NFL model: power ratings, win probability, The Ladder, the weekly prop board and game/prop edges.
 
-**Every signal our engines publish is graded against the market that priced it — per tool, wins and losses both, including the engines that lose money.** The live record: [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)
+**Every signal our engines publish is graded against the market that priced it — per tool, wins and losses both, including the engines that lose money.** The live record: [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme)
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp?via=npm`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
 - **44 tools** — 37 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Every free tool answers in season, including the eight fantasy-draft tools, which now answer week-by-week market questions (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28; the graded track record, the Sleeper league view, start/sit and waiver targets joined 2026-10-11; the NBA prop price board joined 2026-10-11; the NFL game explainer, the NBA game-line board and NBA injury impact joined 2026-10-13; the NFL prop and ladder explainers joined 2026-10-14).
-- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — the eight draft tools, connect instructions, and the model behind the board. During the season all eight answer week-by-week NFL market questions instead of draft questions.
+- **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme) — the eight draft tools, connect instructions, and the model behind the board. During the season all eight answer week-by-week NFL market questions instead of draft questions.
 
 ## See it work
 
@@ -71,7 +71,7 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 ## Tools
 
-Free tools need no key. Pro tools read the live PMP edge engines and require a PredictionMarketsPicks API key ([$14.99/mo](https://predictionmarketspicks.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-server)). Deeper results on the list-shaped tools unlock instantly and free — no key to copy, nothing to install: [unlock here](https://predictionmarketspicks.com/mcp/unlock?utm_source=github&utm_medium=readme&utm_campaign=mcp-server).
+Free tools need no key. Pro tools read the live PMP edge engines and require a PredictionMarketsPicks API key ([$14.99/mo](https://predictionmarketspicks.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme)). Deeper results on the list-shaped tools unlock instantly and free — no key to copy, nothing to install: [unlock here](https://predictionmarketspicks.com/mcp/unlock?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme).
 
 ### Calculators — free, stateless, also available offline via `--local`
 
@@ -168,7 +168,7 @@ docker run --rm -i pmp-mcp-quant
 
 ## About
 
-Built by [PredictionMarketsPicks](https://predictionmarketspicks.com/?utm_source=github&utm_medium=readme&utm_campaign=mcp-server) — independent quant tools and edge analysis for Kalshi and Polymarket, published by The 7 Oracles. Educational analysis, not financial advice.
+Built by [PredictionMarketsPicks](https://predictionmarketspicks.com/?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme) — independent quant tools and edge analysis for Kalshi and Polymarket, published by The 7 Oracles. Educational analysis, not financial advice.
 
 ## License
 
