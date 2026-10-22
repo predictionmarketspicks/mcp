@@ -12,7 +12,7 @@ A hosted **Model Context Protocol** server that gives AI agents quant tools for 
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp?via=npm`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **44 tools** — 37 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Every free tool answers in season, including the eight fantasy-draft tools, which now answer week-by-week market questions (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28; the graded track record, the Sleeper league view, start/sit and waiver targets joined 2026-10-11; the NBA prop price board joined 2026-10-11; the NFL game explainer, the NBA game-line board and NBA injury impact joined 2026-10-13; the NFL prop and ladder explainers joined 2026-10-14).
+- **45 tools** — 38 free, 5 Pro, 2 free-with-depth-caps. No key needed for the free set. Every free tool answers in season, including the eight fantasy-draft tools, which now answer week-by-week market questions (the 2026 Senate map and per-race odds joined 2026-09-17; the Kalshi 15-minute board and the two perps tools joined 2026-09-26; the NHL board joined 2026-09-28; the graded track record, the Sleeper league view, start/sit and waiver targets joined 2026-10-11; the NBA prop price board joined 2026-10-11; the NFL game explainer, the NBA game-line board and NBA injury impact joined 2026-10-13; the NFL prop and ladder explainers joined 2026-10-14).
 - **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme) — the eight draft tools, connect instructions, and the model behind the board. During the season all eight answer week-by-week NFL market questions instead of draft questions.
 
 ## See it work
@@ -48,7 +48,7 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 }
 ```
 
-That relays the hosted server verbatim — all 44 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
+That relays the hosted server verbatim — all 45 tools, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
@@ -62,11 +62,11 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 | Server | Endpoint | Exposes |
 |---|---|---|
-| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 44 tools |
+| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | All 45 tools |
 | `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp?via=github` | 11 tools: the 8 draft tools (all answer in season with the week's market) plus the in-season league tools `my_league`, `start_sit` and `waiver_targets` |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp?via=github` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
 | `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp?via=github` | The 10-tool macro & commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `fed_rate_odds`, `market_pulse`, `base_rate_gap` + three calculators |
-| `com.predictionmarketspicks/elections` | `https://predictionmarketspicks.com/api/mcp-elections/mcp?via=github` | The election odds desk: `senate_map`, `race_odds` (every 2026 Senate, governor and House race on Kalshi), `fed_rate_odds`, `market_pulse` |
+| `com.predictionmarketspicks/elections` | `https://predictionmarketspicks.com/api/mcp-elections/mcp?via=github` | The election odds desk: `senate_map`, `race_odds`, `best_price` (every 2026 Senate, governor and House race on Kalshi), `fed_rate_odds`, `market_pulse` |
 | `com.predictionmarketspicks/crypto` | `https://predictionmarketspicks.com/api/mcp-crypto/mcp?via=github` | The crypto desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (bitcoin) + three calculators |
 
 ## Tools
@@ -100,6 +100,7 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 |---|---|
 | `senate_map` | Every 2026 Senate seat — holder, structure rating, forecaster ratings and the live Kalshi price, closest race first. Unpriced seats return null, never an estimate. |
 | `race_odds` | Live Kalshi odds for one 2026 Senate, governor or competitive House race (by state or district, e.g. "TX-34") — every leg's price, volume and link, plus the forecaster ratings. |
+| `best_price` | Where the same contract is cheapest after fees — Kalshi vs Polymarket US vs Novig — for a sports game, a 2026 race or the next Fed meeting. Ranked by price only. |
 
 ### Markets — free, depth-capped
 
