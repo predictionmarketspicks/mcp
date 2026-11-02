@@ -1,6 +1,8 @@
+Hosted endpoint + full tool list: https://predictionmarketspicks.com/mcp?utm_source=github&utm_medium=repo&utm_campaign=mcp-readme
+
 # PredictionMarketsPicks MCP
 
-**Canonical home:** [predictionmarketspicks.com/mcp](https://predictionmarketspicks.com/mcp?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme) — docs, setup, the live wall and the per-tool track record. This repo is the bridge and the offline calculators; the server lives on the site.
+**Canonical home:** [predictionmarketspicks.com/mcp](https://predictionmarketspicks.com/mcp?utm_source=github&utm_medium=repo&utm_campaign=mcp-readme) — docs, setup, the live wall and the per-tool track record. This repo is the bridge and the offline calculators; the server lives on the site.
 
 [![npm](https://img.shields.io/npm/v/@predictionmarketspicks/mcp)](https://www.npmjs.com/package/@predictionmarketspicks/mcp)
 [![mcp MCP server](https://glama.ai/mcp/servers/predictionmarketspicks/mcp/badges/card.svg)](https://glama.ai/mcp/servers/predictionmarketspicks/mcp)
