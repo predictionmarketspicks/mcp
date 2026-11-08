@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "predictionmarketspicks",
+  "version": "1.0.0",
+  "description": "Live prediction-market prices and quant tools for Kalshi, Polymarket and other venues through the hosted PredictionMarketsPicks MCP server, with the prediction-markets skill bundled.",
+  "author": {
+    "name": "PredictionMarketsPicks",
+    "url": "https://predictionmarketspicks.com"
+  },
+  "homepage": "https://predictionmarketspicks.com/mcp",
+  "repository": "https://github.com/predictionmarketspicks/mcp",
+  "license": "MIT",
+  "keywords": ["prediction-markets", "kalshi", "polymarket", "quant", "expected-value", "kelly", "nfl", "nba", "nhl", "fed", "elections", "weather", "mcp"],
+  "extensions": {
+    "com.nousresearch.hermes": {
+      "servers": {
+        "predictionmarketspicks": { "trust": "untrusted" }
+      }
+    }
+  }
+}
