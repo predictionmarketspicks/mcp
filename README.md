@@ -71,6 +71,40 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 | `com.predictionmarketspicks/elections` | `https://predictionmarketspicks.com/api/mcp-elections/mcp?via=github` | The election odds desk: `senate_map`, `race_odds`, `best_price` (every 2026 Senate, governor and House race on Kalshi), `fed_rate_odds`, `market_pulse` |
 | `com.predictionmarketspicks/crypto` | `https://predictionmarketspicks.com/api/mcp-crypto/mcp?via=github` | The crypto desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (bitcoin) + three calculators |
 
+## Install in Hermes Agent
+
+This repo is also a portable [Agent Plugins v1](https://agent-plugins.org/specification) package: `mcp.json` (the hosted server above, Streamable HTTP) plus the `prediction-markets` skill in `skills/`. From the Hermes plugin catalog:
+
+```bash
+hermes plugins install predictionmarketspicks
+hermes plugins enable predictionmarketspicks
+```
+
+Or straight from this repository:
+
+```bash
+hermes plugins install predictionmarketspicks/mcp --no-enable
+hermes plugins enable predictionmarketspicks
+```
+
+What to know before installing:
+
+- **Network:** tool calls go over HTTPS to `predictionmarketspicks.com` only.
+- **Auth:** none — no API key, no OAuth, no environment variables. A few tools are Pro and return `requires_pro: true` with an upgrade link instead of data.
+- **Local access:** none. The Hermes package is `mcp.json` + a Markdown skill — no executable code runs on your machine, no file reads or writes, no shell, no credential files.
+- **Updates:** nothing updates itself; the tool set is served by the remote server at runtime.
+- **Server logs:** per call, the server records the tool name, a timestamp, the client type and version, the success or error code, the `via` tag and a salted hash of the IP address. It does not store call arguments or results.
+
+## Install the agent skill
+
+The same skill works in any agent that reads [Agent Skills](https://agentskills.io) (Claude Code, Cursor, Codex and others):
+
+```bash
+npx skills add predictionmarketspicks/mcp --skill prediction-markets
+```
+
+It tells the agent how to connect the server, which tool answers which question, and to quote only prices that came from a tool call.
+
 ## Tools
 
 Free tools need no key. Pro tools read the live PMP edge engines and require a PredictionMarketsPicks API key ([$14.99/mo](https://predictionmarketspicks.com/pricing?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme)). Deeper results on the list-shaped tools unlock instantly and free — no key to copy, nothing to install: [unlock here](https://predictionmarketspicks.com/mcp/unlock?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme).
@@ -120,7 +154,7 @@ Free tools need no key. Pro tools read the live PMP edge engines and require a P
 | `nfl_ladder` | The Ladder — every Kalshi strike vs our whole distribution (spreads, season wins, props) with the derived verdict: SHAPE, LOCATION or PRICED. |
 | `nfl_prop_board` | This week's NFL prop prices venue by venue — every Kalshi strike vs the book consensus, DraftKings/FanDuel lines, Novig/ProphetX, and where the best price for each side actually is. |
 | `nba_prop_board` | Every Kalshi NBA player-prop strike (points, rebounds, assists, threes) beside DraftKings, FanDuel, BetRivers, Fanatics, ESPN, Novig and ProphetX at the same strike — the cheapest venue per side, Kalshi fee included. Market prices only, no model. |
-| `nba_game_board` | Kalshi NBA moneyline, spread and total beside DraftKings, FanDuel, BetRivers, Fanatics, ESPN, Novig and ProphetX at the same line — the cheapest venue per side, Kalshi fee included. Market prices only. |
+| `nba_game_board` | Kalshi NBA game winner, spread and total beside DraftKings, FanDuel, BetRivers, Fanatics, ESPN, Novig and ProphetX at the same line — the cheapest venue per side, Kalshi fee included. Market prices only. |
 | `nba_injury_impact` | Today's NBA absences from the official injury report, and for each absent star the teammates whose minutes and stats rose without him (with sample sizes), beside today's Kalshi prop prices. |
 | `ladder_arb` | Ladder Arb Scanner — Kalshi college football + NFL spread/total ladders priced out of order on the same side of the same game: locked arbitrage (buy the low strike, sell the high one) and crossed-mid inversions with the resting orders that capture them. |
 | `explain_game` | Why our model prices one NFL game where it does — Kalshi's price and line, our win probability, the model's lean in points, each team's power rating and the QB gate. |
