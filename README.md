@@ -10,11 +10,24 @@ Hosted endpoint + full tool list: https://predictionmarketspicks.com/mcp?utm_sou
 
 A hosted **Model Context Protocol** server that gives AI agents quant tools for **Kalshi** and **Polymarket** prediction markets — expected value, Kelly sizing, Bayesian updating, probability conversion, cross-platform price gaps, Fed rate odds, Kalshi's 15-minute markets and perps (with liquidation estimates), live edge signals, and the in-season NFL model: power ratings, win probability, The Ladder, the weekly prop board and game/prop edges.
 
+**The quant layer for Kalshi's official MCP.** Kalshi's own server (`https://api.elections.kalshi.com/mcp`, launched 2026-11-06) reads Kalshi: markets, prices, your account. This one prices what it reads — expected value, Kelly sizing, correlation-aware combos, Fed odds and a graded track record — and runs alongside it. Use both in one client:
+
+```json
+{
+  "mcpServers": {
+    "kalshi": { "url": "https://api.elections.kalshi.com/mcp" },
+    "predictionmarketspicks": { "url": "https://predictionmarketspicks.com/api/mcp/mcp?via=npm" }
+  }
+}
+```
+
+Not affiliated with or endorsed by Kalshi. What Kalshi's server covers and what to add: [predictionmarketspicks.com/articles/kalshi-official-mcp-server-what-it-covers-and-what-to-add](https://predictionmarketspicks.com/articles/kalshi-official-mcp-server-what-it-covers-and-what-to-add?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme)
+
 **Every signal our engines publish is graded against the market that priced it — per tool, wins and losses both, including the engines that lose money.** The live record: [predictionmarketspicks.com/track-record](https://predictionmarketspicks.com/track-record?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme)
 
 - **Endpoint (Streamable HTTP):** `https://predictionmarketspicks.com/api/mcp/mcp?via=npm`
 - **Registry name:** `com.predictionmarketspicks/quant` ([MCP registry](https://registry.modelcontextprotocol.io))
-- **40 tools** on the main endpoint (`/api/mcp/mcp`), **45** across the two hosted servers: the fantasy-draft server adds `adp_market_gaps`, `best_available`, `compare_players`, `draft_board` and `who_do_i_draft`. No key needed for the free set. Counts read from the live `tools/list` on 2026-11-03.
+- **41 tools** on the main endpoint (`/api/mcp/mcp`), **46** across the two hosted servers: the fantasy-draft server adds `adp_market_gaps`, `best_available`, `compare_players`, `draft_board` and `who_do_i_draft`. No key needed for the free set. Counts read from the live `tools/list` on 2026-11-10.
 - **Fantasy draft landing page:** [predictionmarketspicks.com/draft](https://predictionmarketspicks.com/draft?utm_source=github&utm_medium=readme&utm_campaign=mcp-readme) — the eight draft tools, connect instructions, and the model behind the board. During the season all eight answer week-by-week NFL market questions instead of draft questions.
 
 ## See it work
@@ -50,7 +63,7 @@ claude mcp add --transport http predictionmarketspicks https://predictionmarkets
 }
 ```
 
-That relays the hosted server verbatim — all 40 tools on the main endpoint, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
+That relays the hosted server verbatim — all 41 tools on the main endpoint, live data, tool schemas and result payloads untouched. Set `PMP_API_KEY` in the server's `env` to unlock the Pro tools; without one you get the free tools at free depth.
 
 ```
 npx @predictionmarketspicks/mcp            # bridge to the hosted quant server (default)
@@ -64,7 +77,7 @@ npx @predictionmarketspicks/mcp --local    # 6 calculators, offline, no network 
 
 | Server | Endpoint | Exposes |
 |---|---|---|
-| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | 40 tools |
+| `com.predictionmarketspicks/quant` | `https://predictionmarketspicks.com/api/mcp/mcp?via=npm` | 41 tools |
 | `com.predictionmarketspicks/fantasy-draft` | `https://predictionmarketspicks.com/api/mcp-draft/mcp?via=github` | 11 tools: the 8 draft tools (all answer in season with the week's market) plus the in-season league tools `my_league`, `start_sit` and `waiver_targets` |
 | `com.predictionmarketspicks/weather` | `https://predictionmarketspicks.com/api/mcp-weather/mcp?via=github` | The 7-tool weather loop: `weather_board` (every open Kalshi daily-high strike) + `edge_alerts` (weather feed) + the five calculators |
 | `com.predictionmarketspicks/commodities` | `https://predictionmarketspicks.com/api/mcp-commodities/mcp?via=github` | The 10-tool macro & commodities desk: `fifteen_min_board`, `perps_board`, `perp_liquidation`, `commodity_edge` (gold / silver / oil / bitcoin), `fed_rate_odds`, `market_pulse`, `base_rate_gap` + three calculators |
